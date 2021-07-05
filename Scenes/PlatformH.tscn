@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Textures/tileset-01.tres" type="TileSet" id=1]
+[ext_resource path="res://Scripts/PlatformH.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 45.7174, 5.73008 )
+
+[node name="PlatformH" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 21, 21 )
+format = 1
+tile_data = PoolIntArray( 65534, 13, 0, 65535, 11, 0, 0, 11, 0, 1, 14, 0 )
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2( 0.176777, 5.12653 )
+shape = SubResource( 1 )
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Area"]
+position = Vector2( 0.177, 17 )
+shape = SubResource( 1 )
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

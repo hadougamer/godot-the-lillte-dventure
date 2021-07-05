@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Resources/HeadFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/HeadText.gd" type="Script" id=2]
+[ext_resource path="res://Fx/coin.wav" type="AudioStream" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "popup"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 0.15932 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="HeadText" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+custom_fonts/font = ExtResource( 1 )
+text = "hadougamer"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/popup = SubResource( 1 )
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( -5, 0 )
+stream = ExtResource( 3 )
+autoplay = true
+[connection signal="animation_finished" from="Anim" to="." method="_on_Anim_animation_finished"]

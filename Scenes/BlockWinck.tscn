@@ -1,0 +1,105 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Sprites/tileset-01.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/BlockWinck.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10.5166, 10.6212 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "go_invisible"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "go_visible"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "is_invisible"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "is_visible"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "stop"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Block" type="Sprite"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 26, 3, 21, 21 )
+script = ExtResource( 2 )
+
+[node name="Body" type="StaticBody2D" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="Body"]
+shape = SubResource( 1 )
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/go_invisible = SubResource( 2 )
+anims/go_visible = SubResource( 3 )
+anims/is_invisible = SubResource( 6 )
+anims/is_visible = SubResource( 5 )
+anims/stop = SubResource( 4 )
+[connection signal="animation_finished" from="Anim" to="." method="_on_Anim_animation_finished"]
