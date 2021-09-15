@@ -15,6 +15,7 @@ var pre_headtext 	= preload("res://Scenes/HeadText.tscn")
 var levels = [
 	preload("res://Scenes/level-01-1.tscn"),
 	preload("res://Scenes/level-01-2.tscn"),
+	preload("res://Scenes/level-01-3.tscn")
 ]
 
 func _ready():
@@ -60,8 +61,8 @@ func loadItem(context, position, item_name):
 		var item = pre_item.instance()
 		item.position = position
 		item.position.y = position.y-60
-
 		context.add_child(item)
+
 	if item_name == 'coin':
 		var pre_item = preload("res://Scenes/Diamond.tscn")
 		var item = pre_item.instance()

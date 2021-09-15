@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Textures/tileset-01.tres" type="TileSet" id=1]
 [ext_resource path="res://Scripts/level-01-2.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/background/background_0.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/background/background_1.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/background/background_2.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Background.tscn" type="PackedScene" id=3]
 
 [node name="root" type="Node"]
 script = ExtResource( 2 )
@@ -18,31 +16,4 @@ tile_data = PoolIntArray( 2424778, 11, 0, 2424779, 11, 0, 2424780, 11, 0, 242478
 [node name="heroPos" type="Position2D" parent="."]
 position = Vector2( 56.9357, 638.279 )
 
-[node name="Parallax" type="ParallaxBackground" parent="."]
-
-[node name="layer01" type="ParallaxLayer" parent="Parallax"]
-motion_scale = Vector2( 0.4, 1 )
-motion_mirroring = Vector2( 1296, 0 )
-
-[node name="Sprite" type="Sprite" parent="Parallax/layer01"]
-position = Vector2( 598.416, 358.672 )
-scale = Vector2( 4.5, 4.5 )
-texture = ExtResource( 3 )
-
-[node name="layer02" type="ParallaxLayer" parent="Parallax"]
-motion_scale = Vector2( 2, 1 )
-motion_mirroring = Vector2( 1296, 0 )
-
-[node name="Sprite" type="Sprite" parent="Parallax/layer02"]
-position = Vector2( 598.416, 358.672 )
-scale = Vector2( 4.5, 4.5 )
-texture = ExtResource( 4 )
-
-[node name="layer03" type="ParallaxLayer" parent="Parallax"]
-motion_scale = Vector2( 3, 1 )
-motion_mirroring = Vector2( 1296, 0 )
-
-[node name="Sprite" type="Sprite" parent="Parallax/layer03"]
-position = Vector2( 598.416, 358.672 )
-scale = Vector2( 4.5, 4.5 )
-texture = ExtResource( 5 )
+[node name="Parallax" parent="." instance=ExtResource( 3 )]

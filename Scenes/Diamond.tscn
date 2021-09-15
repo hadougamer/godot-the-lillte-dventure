@@ -61,7 +61,6 @@ animations = [ {
 ]]
 scale = Vector2( 0.1, 0.1 )
 frames = SubResource( 10 )
-frame = 2
 playing = true
 script = ExtResource( 2 )
 
